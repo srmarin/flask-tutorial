@@ -1,0 +1,390 @@
+{
+	"info": {
+		"_postman_id": "389c468d-ab6d-48e0-820d-694a4c7b3ab2",
+		"name": "Flask API REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Store",
+			"item": [
+				{
+					"name": "/store - Get all stores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/store",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/store/<string:id> - Get store information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/store/{{store_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"store",
+								"{{store_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/store - Create new store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseData = JSON.parse(responseBody);\r",
+									"pm.globals.set(\"store_id\", responseData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Store v1.0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/store",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/store/<string:id> - Remove store",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/store/{{store_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"store",
+								"{{store_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Item",
+			"item": [
+				{
+					"name": "/item - Get all items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/item",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/item/<string:id> - Get item information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/item/{{item_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"item",
+								"{{item_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/item - Create new item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseData = JSON.parse(responseBody);\r",
+									"pm.globals.set(\"item_id\", responseData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Desk\",\r\n    \"price\": 99.99,\r\n    \"store_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/item",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/item/<string:id> - Update item",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"BRAND New laptop\",\r\n    \"price\": 1899,\r\n    \"store_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/item/{{item_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"item",
+								"{{item_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/item/<int:id> - Delete item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/item/{{item_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"item",
+								"{{item_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "/tags/<id> - Get tag",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/tag/{{tag_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tag",
+								"{{tag_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/store/<id>/tag - Get tags in store",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/store/{{store_id}}/tag",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"store",
+								"{{store_id}}",
+								"tag"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/store/<id>/tag - Create tag in store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseData = JSON.parse(responseBody);\r",
+									"pm.globals.set(\"tag_id\", responseData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tag name\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/store/{{store_id}}/tag",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"store",
+								"{{store_id}}",
+								"tag"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "/register - Create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseData = JSON.parse(responseBody);\r",
+									"pm.globals.set(\"token\", responseData.token);\r",
+									"pm.globals.set(\"user_id\", responseData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Sergio\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/<id> - Get user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/user/{{user_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/<id> - Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/user/{{user_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
