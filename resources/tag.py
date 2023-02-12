@@ -20,7 +20,10 @@ class TagInStore(MethodView):
     @blp.arguments(TagSchema)
     @blp.response(201, TagSchema)
     def post(self, tag_data, store_id):
-        # if TagModel.query.filter(TagModel.store_id == store_id, TagModel.name == tag_data.get('name')).first():
+        # if TagModel.query.filter(
+            # TagModel.store_id == store_id, 
+            # TagModel.name == tag_data.get('name')
+        # ).first():
         #     abort(400, message="A tag with that name alredy exists in that store.")
 
         tag = TagModel(**tag_data, store_id=store_id)
@@ -29,7 +32,10 @@ class TagInStore(MethodView):
             db.session.add(tag)
             db.session.commit()
         except SQLAlchemyError as e:
-            abort(500, message=f"An error ocurred when trying to save the tag. {str(e)}")
+            abort(
+                500, 
+                message=f"An error ocurred when trying to save the tag. {str(e)}"
+            )
 
         return tag
 
@@ -77,7 +83,11 @@ class Tag(MethodView):
         example={"message": "Tag deleted."}
     )
     @blp.alt_response(404, description="Tag not found.")
-    @blp.alt_response(400, description="Returned if the tag is assigend to one or more items. In this case, the tag is not deleted.")
+    @blp.alt_response(
+        400, 
+        description="Returned if the tag is assigend to one or more items.\
+             In this case, the tag is not deleted."
+    )
     def delete(self, tag_id):
         tag = TagModel.query.get_or_404(tag_id)
 
@@ -87,5 +97,6 @@ class Tag(MethodView):
             return {"message": "Tag deleted."}
         abort(
             400, 
-            message="Could not delete tag. Make sure tag is not associated with any items, then try again."
+            message="Could not delete tag. Make sure tag is not \
+                associated with any items, then try again."
         )
